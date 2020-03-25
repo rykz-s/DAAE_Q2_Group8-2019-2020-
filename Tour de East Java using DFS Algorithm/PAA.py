@@ -2,44 +2,24 @@ import random
 import sys
 
 GRAPH = {\
-            'Pacitan': {'Ponorogo': 79, 'Trenggalek': 105},
-            'Ponorogo': {'Pacitan': 79, 'Trenggalek': 44, 'Magetan': 36, 'Kab_Madiun': 30, 'Tulungagung': 80},
-            'Trenggalek': {'Pacitan': 105, 'Ponorogo': 44, 'Tulungagung': 36},
-            'Tulungagung': {'Ponorogo': 80, 'Trenggalek': 36, 'Kediri': 54, 'Blitar': 29, 'Kab_Blitar': 30},
-            'Magetan': {'Ponorogo': 36, 'Madiun': 26, 'Ngawi': 36},
-            'Madiun': {'Magetan': 26, 'Kab_Madiun': 1, 'Ngawi': 37},
-            'Kab_Madiun': {'Madiun': 1, 'Ponorogo': 30, 'Kediri': 115, 'Nganjuk': 60},
-            'Ngawi': {'Magetan': 36, 'Madiun': 37, 'Bojonegoro': 75},
-            'Tuban': {'Bojonegoro': 42, 'Lamongan': 59},
-            'Lamongan': {'Tuban': 59, 'Bojonegoro': 66, 'Jombang': 70, 'Gresik': 30},
-            'Gresik': {'Lamongan': 30, 'Mojokerto': 57, 'Surabaya': 21},
-            'Bojonegoro': {'Ngawi': 75, 'Nganjuk': 65, 'Tuban': 42, 'Lamongan': 66},
-            'Nganjuk': {'Bojonegoro': 65, 'Kab_Madiun': 60, 'Kediri': 66, 'Jombang': 52},
-            'Kediri': {'Tulungagung': 54, 'Kab_Madiun': 115, 'Kab_Kediri': 27, 'Nganjuk': 66},
-            'Kab_Kediri': {'Kediri': 27, 'Jombang': 53, 'Batu': 68},
-            'Jombang': {'Nganjuk': 52, 'Kab_Kediri': 53, 'Lamongan': 70, 'Mojokerto': 30, 'Batu': 73},
-            'Mojokerto': {'Kab_Mojokerto': 1, 'Jombang': 30, 'Gresik': 57, 'Sidoarjo': 52},
-            'Kab_Mojokerto': {'Mojokerto': 1, 'Batu': 46},
-            'Sidoarjo': {'Malang': 71, 'Mojokerto': 52, 'Surabaya': 29, 'Pasuruan': 47},
-            'Surabaya': {'Sidoarjo': 29, 'Gresik': 21, 'Bangkalan': 32},
-            'Blitar': {'Kab_Blitar': 8, 'Tulungagung': 29, 'Batu': 73, 'Malang': 76},
-            'Kab_Blitar': {'Tulungagung': 30, 'Blitar': 8, 'Kab_Malang': 73},
-            'Malang': {'Kab_Malang': 23, 'Blitar': 76, 'Batu': 17, 'Sidoarjo': 71},
-            'Kab_Malang': {'Kab_Blitar': 73, 'Malang': 23, 'Lumajang': 95},
-            'Pasuruan': {'Sidoarjo': 47, 'Kab_Pasuruan': 5, 'Probolinggo': 46},
-            'Kab_Pasuruan': {'Pasuruan': 5, 'Lumajang': 87},
-            'Lumajang': {'Kab_Malang': 95, 'Kab_Pasuruan': 87, 'Probolinggo': 44, 'Jember': 66},
-            'Probolinggo': {'Pasuruan': 46, 'Lumajang': 44, 'Kab_Probolinggo': 47},
-            'Kab_Probolinggo': {'Probolinggo': 47, 'Jember': 107, 'Bondowoso': 34},
-            'Jember': {'Lumajang': 66, 'Kab_Probolinggo': 107, 'Bondowoso': 34, 'Banyuwangi': 103},
-            'Bondowoso': {'Jember': 34, 'Kab_Probolinggo': 34, 'Situbondo': 34},    
-            'Situbondo': {'Bondowoso': 34, 'Banyuwangi': 95},
-            'Banyuwangi': {'Jember': 103, 'Situbondo': 95},
-            'Bangkalan': {'Surabaya': 32, 'Sampang': 64},
-            'Sampang': {'Bangkalan': 64, 'Pamekasan': 34},
-            'Pamekasan': {'Sampang': 34, 'Sumenep': 55},
-            'Batu': {'Malang': 17, 'Blitar': 73, 'Kab_Kediri': 68, 'Jombang': 73, 'Kab_Mojokerto': 46},
-            'Sumenep': {'Pamekasan': 55}
+            'Pacitan': {'Blitar': 174, 'Madiun': 108},
+            'Magetan': {'Madiun': 28},
+            'Madiun': {'Magetan': 28, 'Pacitan': 108, 'Bojonegoro': 112},
+            'Bojonegoro': {'Madiun': 112, 'Lamongan': 66},
+            'Lamongan': {'Bojonegoro': 66, 'Surabaya': 46},
+            'Surabaya': {'Lamongan': 46, 'Sidoarjo': 26, 'Bangkalan': 43},
+            'Sidoarjo': {'Surabaya': 26, 'Jombang': 90, 'Malang': 71, 'Pasuruan': 47},
+            'Jombang': {'Sidoarjo': 90, 'Kediri': 35},
+            'Kediri': {'Jombang': 35, 'Blitar': 98},
+            'Blitar': {'Pacitan': 174, 'Kediri': 98, 'Malang': 78},
+            'Malang': {'Blitar': 78, 'Sidoarjo': 71},
+            'Pasuruan': {'Sidoarjo': 47, 'Probolinggo': 47},
+            'Probolinggo': {'Pasuruan': 47, 'Bondowoso': 97},
+            'Bondowoso': {'Probolinggo': 97, 'Jember': 35, 'Banyuwangi': 97},
+            'Jember': {'Bondowoso': 35},
+            'Banyuwangi': {'Bondowoso': 97},
+            'Sumenep': {'Bangkalan': 139},
+            'Bangkalan': {'Sumenep': 139, 'Surabaya': 43}
         }
 
 def dfs_paths(source, destination, path=None):
@@ -78,60 +58,73 @@ def terdekat(source, destination):
                 
 
 def main():
-    print("List of city in East Java : ")
-    p = open("listcity.txt", "r")
+    print("Daftar Kota di Jawa Timur : ")
+    p = open("Listtown.txt", "r")
     print(p.read())
     print("\n")
-    cities = open('randcity.txt').readlines()
+    cities = open('horizoncity.txt').readlines()
     city = cities[0]
     words = city.split()
     source = random.choice(words)
     goal = random.choice(words)
     if source == goal:
-        print("Salah, coba lagi!")
+        print("Generate random mengambil asal kota dan tujuan kota yang sama!")
         sys.exit(1)
-    print(source)
-    print(" ")
-    print(goal)
     count = 0
     paths = dfs_paths(source, goal)
+    cost, jalur_terdekat = terdekat(source, goal)
     for path in paths:
-        print(" ")
-        print(' -> '.join(city for city in path))
-        print ("\nJumlah kota yang dilewati adalah sebanyak", len(path) , "kota")
+        #a = (' -> '.join(city for city in path))
         count+=1
-        #jjalur = '6'
-        #paths = dfs_paths(source, goal)
-        #cost, jalur_terdekat = terdekat(source, goal)
-        #print('Ada Berapa cara dari arad ke Sibiu?', end=' ')
-        #jwb1 = input().strip()
-        #if jwb1 == jjalur:
-         #   print('Selamat Anda benar', end='\n')
-        #else:
-         #   print('Selamat Anda salah', end='\n')
-        #print('Jalur terdekat dari Arad ke Sibiu?', end=' ')
-        #jwb = input().strip()
-        #if jwb == fruits:
-         #   print('Selamat Anda benar', end='\n')
-        #else:
-         #   print('Selamat Anda salah', end='\n')
-    #print('\nSemua kemungkinan jalur yang bisa dilalui:')   
-    paths = dfs_paths(source, goal)
-    cost, jalur_terdekat = terdekat(source, goal)
     print("Ada berapa cara dari " + source + " ke " + goal + " ?", end=' ')
-    ans1 = input().strip()
+    ans1 = int(input("\nJumlah cara = "))
+    benar = 0
     if ans1 == count:
-        print ('Selamat anda benar!', end='\n')
+        print ('Selamat jawaban Anda benar!', end='\n')
+        benar += 1
     else:
-        print('Anda salah!', end='\n')
+        print('Jawaban Anda salah!', end='\n')
         print("Jawaban yang benar adalah", count, "cara")
-    print("Jalur terdekat dari " + source + " ke " + goal + " ?", end =' ') 
-    print(" ")
-    print("Terdapat", count, "cara")
-    print('\nJalur Terdekat:')
-    cost, jalur_terdekat = terdekat(source, goal)
-    print(' -> '.join(city for city in jalur_terdekat))
-    print('Cost Jalur =', cost, "km\n")
-
+    print("\nJalur terdekat dari " + source + " ke " + goal + " ?", end ='\n') 
+    d = " -> ".join(jalur_terdekat)
+    # print(d)
+    ans2 = input('Jalur terdekat adalah = ')
+    if ans2 == d:
+        print ('Selamat jawaban Anda benar!', end='\n')
+        benar += 1
+    else:
+        print('Jawaban Anda salah!', end='\n')
+        print('Jawaban yang benar adalah ')
+        print(' -> '.join(city for city in jalur_terdekat))
+    print('\nBerapa jaraknya ?')
+    ans3 = int(input("Jarak = "))
+    if ans3 == cost:
+        print ('\nSelamat Jawaban Anda benar!', end='\n')
+        benar += 1
+    else:
+        print('\nJawaban Anda salah!', end='\n')
+        print("\nJawaban yang benar adalah", cost, "km\n")
+    if benar == 1:
+        print("\nNilai anda adalah 50 ")
+    elif benar == 2:
+        print("\nNilai anda adalah 75 ")
+    elif benar == 3:
+        print("\nNilai anda adalah 100, Selamat anda benar semua!")
+    elif benar == 0:
+        print("\nDibaca mapnya lagi yaaa")
+    print("\nJadi, dari quiz game di atas dapat disimpulkan bahwa kemungkinan jalur yang dapat dilalui adalah :")
+    paths = dfs_paths(source, goal)
+    hitung = 0
+    for path in paths:
+        print("\n")
+        hitung+=1
+        print(hitung, ".")
+        print(' -> '.join(city for city in path))
+    #print ("\nJumlah kota yang dilewati adalah sebanyak", len(path) , "kota") # masih salah disini, harusnya ngeprint semua jalur
+    print("\n")
+    print("Jumlah jalur yang bisa ditempuh adalah:", count, "jalur")
+    print("Jalur yang terdekat adalah:",( ' -> '.join(city for city in jalur_terdekat)))
+    print("Dengan jarak",cost, "km\n")
+    
 if __name__ == '__main__':
     main()
