@@ -1,6 +1,7 @@
 import random
 import sys
 
+# Make a graph that shows the relationship between trees between cities
 GRAPH = {\
             'Pacitan': {'Blitar': 174, 'Madiun': 108},
             'Magetan': {'Madiun': 28},
@@ -22,6 +23,7 @@ GRAPH = {\
             'Bangkalan': {'Sumenep': 139, 'Surabaya': 43}
         }
 
+# Create a DFS to search the possibility that happened from the source city to the destination city
 def dfs_paths(source, destination, path=None):
     
     if path is None:
@@ -31,6 +33,7 @@ def dfs_paths(source, destination, path=None):
     for next_node in set(GRAPH[source].keys()) - set(path):
         yield from dfs_paths(next_node, destination, path + [next_node])
 
+# Create a UCS to search the shortest way from source city to destination city
 def terdekat(source, destination):
     from queue import PriorityQueue
     priority_queue, visited = PriorityQueue(), {}
@@ -76,7 +79,7 @@ def main():
         print("Jawaban yang benar adalah", count, "cara")
     print("\nJalur terdekat dari " + source + " ke " + goal + " ?", end ='\n') 
     d = " -> ".join(jalur_terdekat)
-    ans2 = input('Jalur terdekat adalah = ')
+    ans2 = input('Jalur terdekat adalah = ') # example of the input is = Kediri -> Jombang
     if ans2 == d:
         print ('Selamat jawaban Anda benar!', end='\n')
         benar+=1
