@@ -1,4 +1,4 @@
-# DAAE_Q2_Group8-2019-2020-
+# DAAE Quiz 2 Group8 (2019/2020)
 # Tour de East Java using DFS Algorithm
 
 This program was created to fulfill Quiz 2 DAA E 2019/2020.
