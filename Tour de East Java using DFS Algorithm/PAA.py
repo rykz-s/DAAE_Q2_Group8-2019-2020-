@@ -23,12 +23,7 @@ GRAPH = {\
         }
 
 def dfs_paths(source, destination, path=None):
-    """All possible paths from source to destination using depth-first search
-    source: Nama kota Asal
-    destination: Nama kota Tujuan
-    path: Jalur yang dilalui saat ini (Default value = None)
-    yields: Semua jalur yang mungkin dari asal ke tujuan
-    """
+    
     if path is None:
         path = [source]
     if source == destination:
@@ -37,11 +32,6 @@ def dfs_paths(source, destination, path=None):
         yield from dfs_paths(next_node, destination, path + [next_node])
 
 def terdekat(source, destination):
-    """Cheapest path from source to destination using uniform cost search
-    :param source: Source city name
-    :param destination: Destination city name
-    :returns: Cost and path for cheapest traversal
-    """
     from queue import PriorityQueue
     priority_queue, visited = PriorityQueue(), {}
     priority_queue.put((0, source, [source]))
@@ -59,10 +49,10 @@ def terdekat(source, destination):
 
 def main():
     print("Daftar Kota di Jawa Timur : ")
-    p = open("Listtown.txt", "r")
+    p = open("listcity.txt", "r")
     print(p.read())
     print("\n")
-    cities = open('horizoncity.txt').readlines()
+    cities = open('randcity.txt').readlines()
     city = cities[0]
     words = city.split()
     source = random.choice(words)
@@ -74,24 +64,22 @@ def main():
     paths = dfs_paths(source, goal)
     cost, jalur_terdekat = terdekat(source, goal)
     for path in paths:
-        #a = (' -> '.join(city for city in path))
         count+=1
     print("Ada berapa cara dari " + source + " ke " + goal + " ?", end=' ')
     ans1 = int(input("\nJumlah cara = "))
     benar = 0
     if ans1 == count:
         print ('Selamat jawaban Anda benar!', end='\n')
-        benar += 1
+        benar+=1
     else:
         print('Jawaban Anda salah!', end='\n')
         print("Jawaban yang benar adalah", count, "cara")
     print("\nJalur terdekat dari " + source + " ke " + goal + " ?", end ='\n') 
     d = " -> ".join(jalur_terdekat)
-    # print(d)
     ans2 = input('Jalur terdekat adalah = ')
     if ans2 == d:
         print ('Selamat jawaban Anda benar!', end='\n')
-        benar += 1
+        benar+=1
     else:
         print('Jawaban Anda salah!', end='\n')
         print('Jawaban yang benar adalah ')
@@ -100,11 +88,11 @@ def main():
     ans3 = int(input("Jarak = "))
     if ans3 == cost:
         print ('\nSelamat Jawaban Anda benar!', end='\n')
-        benar += 1
+        benar+=1
     else:
         print('\nJawaban Anda salah!', end='\n')
         print("\nJawaban yang benar adalah", cost, "km\n")
-    if benar == 1:
+    if benar == 1 :    
         print("\nNilai anda adalah 50 ")
     elif benar == 2:
         print("\nNilai anda adalah 75 ")
@@ -120,7 +108,6 @@ def main():
         hitung+=1
         print(hitung, ".")
         print(' -> '.join(city for city in path))
-    #print ("\nJumlah kota yang dilewati adalah sebanyak", len(path) , "kota") # masih salah disini, harusnya ngeprint semua jalur
     print("\n")
     print("Jumlah jalur yang bisa ditempuh adalah:", count, "jalur")
     print("Jalur yang terdekat adalah:",( ' -> '.join(city for city in jalur_terdekat)))
